@@ -1,0 +1,16 @@
+.Sidebar {
+  float: left;
+  width: 20%;
+  height: 90vh;
+  background-color: #164557;
+  color: #FFFFFF;
+
+  &__menu {
+    margin: 10%;
+
+    &--line {
+      border:solid #FFFFFF 0.5px;
+      width: 100%;
+    }
+  }
+}
