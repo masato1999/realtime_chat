@@ -1,0 +1,21 @@
+.Layout {
+  width: 100%;
+  height: 100%;
+
+  &__Header {
+    width: 100%;
+    height: 10vh;
+  }
+
+  &__Sidebar {
+    float: left;
+    width:  20%;
+    height: 90vh;
+  }
+
+  &__Main {
+    float: left;
+    width:  80%;
+    height: 90vh;
+  }
+}

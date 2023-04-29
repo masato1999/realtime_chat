@@ -1,15 +1,15 @@
 <template>
-  <Card />
+  <CardList />
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import Card from '@/components/organisms/Card/main.vue'
+import CardList from '@/components/organisms/CardList/main.vue'
 
 export default defineComponent({
   layout: 'layout',
   components: {
-    Card,
+    CardList,
   },
   setup() {
     console.log('index.vue')

@@ -1,8 +1,8 @@
 <template>
   <div class="UserInfoBox">
-    <img class="UserInfoBox__Icon" />
+    <img src="@/assets/img/carrot.png" class="UserInfoBox__Icon" />
     <div class="UserInfoBox__Info">
-      <div class="UserInfoBox__Name">{{ UserInfoBoxName }}</div>
+      <div class="UserInfoBox__Name">{{ userInfoBoxName }}</div>
       <div class="UserInfoBox__Status">
         <span
           class="UserInfoBox__StatusIcon"
@@ -10,10 +10,15 @@
         >
           ●
         </span>
-        <p>{{ userStatus }}</p>
+        <p class="UserInfoBox__StatusMessage">{{ userStatus }}</p>
       </div>
     </div>
-    <div class="UserInfoBox__Time">{{ shapingTime }}</div>
+    <div
+      class="UserInfoBox__Time"
+      :class="{ 'UserInfoBox__Time--hidden': offChat }"
+    >
+      {{ shapingTime }}
+    </div>
   </div>
 </template>
 
@@ -23,6 +28,10 @@ import moment from 'moment'
 
 export default defineComponent({
   props: {
+    name: {
+      default: false,
+      type: String,
+    },
     isOnline: {
       default: false,
       type: Boolean,
@@ -31,8 +40,14 @@ export default defineComponent({
       default: false,
       type: Date,
     },
+    // リアルタイムで取得する必要がない
+    offChat: {
+      default: false,
+      type: Boolean,
+    },
   },
   setup(props) {
+    const userInfoBoxName = computed(() => props.name)
     const userStatus = computed(() =>
       props.isOnline ? 'オンライン' : 'オフライン'
     )
@@ -41,6 +56,7 @@ export default defineComponent({
     )
 
     return {
+      userInfoBoxName,
       userStatus,
       shapingTime,
     }

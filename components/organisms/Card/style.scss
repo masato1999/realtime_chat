@@ -1,0 +1,15 @@
+.Card {
+  background-color: antiquewhite;
+  height: 60px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 1%;
+  
+  &__Text {
+    margin: 0;
+    padding: 0;
+    color: #09222B;
+    font-size: 10px;
+  }
+}
