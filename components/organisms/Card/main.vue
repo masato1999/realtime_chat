@@ -1,7 +1,11 @@
 <template>
   <div class="Card">
     <div class="Card__UserInfoBox">
-      <UserInfoBox />
+      <UserInfoBox
+        :name="userInfo.name"
+        :isOnline="userInfo.isOnline"
+        :time="userInfo.time"
+      />
     </div>
     <dir class="Card__Text">
       {{ messageDetail }}
@@ -26,8 +30,15 @@ export default defineComponent({
   setup(props) {
     const messageDetail = computed(() => props.message)
 
+    const userInfo = {
+      name: 'テスト太郎',
+      isOnline: true,
+      time: new Date(),
+    }
+
     return {
       messageDetail,
+      userInfo,
     }
   },
 })

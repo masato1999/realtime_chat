@@ -40,5 +40,9 @@
 
   &__Time {
     font-size: 6px;
+
+    &--hidden {
+      display: none;
+    }
   }
 }

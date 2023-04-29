@@ -2,12 +2,12 @@
   background-color: #164557;
   color: #FFFFFF;
 
-  &__menu {
+  &__Menu {
     margin: 10%;
-
-    &--line {
-      border:solid #FFFFFF 0.5px;
-      width: 100%;
-    }
+  }
+  
+  &__UnderLine {
+    border:solid #FFFFFF 0.5px;
+    width: 100%;
   }
 }

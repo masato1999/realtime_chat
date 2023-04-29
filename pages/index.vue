@@ -1,15 +1,15 @@
 <template>
-  <CardList />
+  <Chat />
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import CardList from '@/components/organisms/CardList/main.vue'
+import Chat from '@/components/organisms/Chat/main.vue'
 
 export default defineComponent({
   layout: 'layout',
   components: {
-    CardList,
+    Chat,
   },
   setup() {
     console.log('index.vue')
