@@ -4,7 +4,8 @@
 
 <script lang="ts">
 import { defineComponent, provide } from "@nuxtjs/composition-api";
-import { UserInfo, userInfoKey, messageListKey } from "./store";
+import { UserInfo } from "./types";
+import { userInfoKey, messageListKey } from "./store";
 import ChatField from "@/components/organisms/ChatField/main.vue";
 
 export default defineComponent({
@@ -13,12 +14,10 @@ export default defineComponent({
     ChatField,
   },
   setup() {
-    console.log("index.vue");
-
     const userInfo: UserInfo = {
       name: "テスト太郎",
       isOnline: true,
-      time: new Date(),
+      dateTime: new Date(),
     };
     const messageList: string[] = [
       "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",

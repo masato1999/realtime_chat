@@ -4,17 +4,17 @@
       <UserInfoBox
         :name="userInfo.name"
         :isOnline="userInfo.isOnline"
-        :time="userInfo.time"
+        :dateTime="userInfo.dateTime"
       />
     </div>
     <dir class="CardItem__Text">
-      {{ messageDetail }}
+      {{ props.message }}
     </dir>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, inject } from "@nuxtjs/composition-api";
+import { defineComponent, inject } from "@nuxtjs/composition-api";
 import { userInfoKey } from "@/pages/store";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
@@ -24,17 +24,15 @@ export default defineComponent({
   },
   props: {
     message: {
-      default: false,
+      default: "",
       type: String,
     },
   },
   setup(props) {
-    const messageDetail = computed(() => props.message);
-
     const userInfo = inject(userInfoKey);
 
     return {
-      messageDetail,
+      props,
       userInfo,
     };
   },

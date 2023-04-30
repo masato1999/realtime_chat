@@ -1,14 +1,9 @@
 <template>
   <div class="ChatField">
     <div class="ChatField__Header">
-      <UserInfoBox
-        :name="userInfo.name"
-        :isOnline="userInfo.isOnline"
-        :time="userInfo.time"
-        :isDate="true"
-      />
+      <UserInfoBox :name="userInfo.name" :isOnline="userInfo.isOnline" />
     </div>
-    <p class="ChatField__UnderLine"></p>
+    <p class="ChatField__UnderLine" />
     <CardList />
   </div>
 </template>
