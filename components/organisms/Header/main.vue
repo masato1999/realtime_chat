@@ -1,5 +1,5 @@
 <template>
-  <div class="Header"></div>
+  <div class="Header" />
 </template>
 
 <style lang="scss" scoped>
