@@ -15,7 +15,7 @@
     </div>
     <div
       class="UserInfoBox__Time"
-      :class="{ 'UserInfoBox__Time--hidden': offChat }"
+      :class="{ 'UserInfoBox__Time--hidden': isDate }"
     >
       {{ shapingTime }}
     </div>
@@ -23,8 +23,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import moment from 'moment'
+import { defineComponent, computed } from "vue";
+import moment from "moment";
 
 export default defineComponent({
   props: {
@@ -40,30 +40,29 @@ export default defineComponent({
       default: false,
       type: Date,
     },
-    // リアルタイムで取得する必要がない
-    offChat: {
+    isDate: {
       default: false,
       type: Boolean,
     },
   },
   setup(props) {
-    const userInfoBoxName = computed(() => props.name)
+    const userInfoBoxName = computed(() => props.name);
     const userStatus = computed(() =>
-      props.isOnline ? 'オンライン' : 'オフライン'
-    )
+      props.isOnline ? "オンライン" : "オフライン",
+    );
     const shapingTime = computed(() =>
-      moment(props.time).format('MM/DD h:mm:ss')
-    )
+      moment(props.time).format("MM/DD h:mm:ss"),
+    );
 
     return {
       userInfoBoxName,
       userStatus,
       shapingTime,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import './style';
+@import "./style";
 </style>

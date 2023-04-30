@@ -1,20 +1,30 @@
 <template>
-  <Chat />
+  <ChatField />
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import Chat from '@/components/organisms/Chat/main.vue'
+import { provide } from "vue";
+import { UserInfo, userInfoKey } from "./store";
+import { defineComponent } from "@vue/composition-api";
+import ChatField from "@/components/organisms/ChatField/main.vue";
 
 export default defineComponent({
-  layout: 'layout',
+  layout: "layout",
   components: {
-    Chat,
+    ChatField,
   },
   setup() {
-    console.log('index.vue')
+    console.log("index.vue");
+
+    const userInfo: UserInfo = {
+      name: "テスト太郎",
+      isOnline: true,
+      time: new Date(),
+    };
+
+    provide(userInfoKey, userInfo);
   },
-})
+});
 </script>
 
 <style lang="scss">

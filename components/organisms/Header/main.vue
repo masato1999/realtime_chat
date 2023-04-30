@@ -3,5 +3,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import './style';
+@import "./style";
 </style>

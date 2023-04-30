@@ -1,21 +1,22 @@
 <template>
-  <div class="Card">
-    <div class="Card__UserInfoBox">
+  <div class="CardItem">
+    <div class="CardItem__UserInfoBox">
       <UserInfoBox
         :name="userInfo.name"
         :isOnline="userInfo.isOnline"
         :time="userInfo.time"
       />
     </div>
-    <dir class="Card__Text">
+    <dir class="CardItem__Text">
       {{ messageDetail }}
     </dir>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import UserInfoBox from '@/components/molecules/UserInfoBox/main.vue'
+import { defineComponent, computed, inject } from "vue";
+import { userInfoKey } from "@/pages/store";
+import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({
   components: {
@@ -28,22 +29,18 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const messageDetail = computed(() => props.message)
+    const messageDetail = computed(() => props.message);
 
-    const userInfo = {
-      name: 'テスト太郎',
-      isOnline: true,
-      time: new Date(),
-    }
+    const userInfo = inject(userInfoKey);
 
     return {
       messageDetail,
       userInfo,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import './style';
+@import "./style";
 </style>
