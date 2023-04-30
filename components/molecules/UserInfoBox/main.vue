@@ -2,7 +2,7 @@
   <div class="UserInfoBox">
     <img src="@/assets/img/carrot.png" class="UserInfoBox__Icon" />
     <div class="UserInfoBox__Info">
-      <div class="UserInfoBox__Name">{{ userInfoBoxName }}</div>
+      <div class="UserInfoBox__Name">{{ name }}</div>
       <div class="UserInfoBox__Status">
         <span
           class="UserInfoBox__StatusIcon"
@@ -13,50 +13,41 @@
         <p class="UserInfoBox__StatusMessage">{{ userStatus }}</p>
       </div>
     </div>
-    <div
-      class="UserInfoBox__Time"
-      :class="{ 'UserInfoBox__Time--hidden': offChat }"
-    >
+    <div v-if="shapingTime !== ''" class="UserInfoBox__Time">
       {{ shapingTime }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed } from "@nuxtjs/composition-api";
 import moment from "moment";
 
 export default defineComponent({
   props: {
     name: {
-      default: false,
+      default: "",
       type: String,
     },
     isOnline: {
       default: false,
       type: Boolean,
     },
-    time: {
-      default: false,
-      type: Date,
-    },
-    // リアルタイムで取得する必要がない
-    offChat: {
-      default: false,
-      type: Boolean,
+    dateTime: {
+      default: "",
+      type: [Date, String],
     },
   },
   setup(props) {
-    const userInfoBoxName = computed(() => props.name);
     const userStatus = computed(() =>
       props.isOnline ? "オンライン" : "オフライン",
     );
-    const shapingTime = computed(() =>
-      moment(props.time).format("MM/DD h:mm:ss"),
-    );
+
+    const shapingTime: string = props.dateTime
+      ? moment(props.dateTime).format("MM/DD h:mm:ss")
+      : "";
 
     return {
-      userInfoBoxName,
       userStatus,
       shapingTime,
     };

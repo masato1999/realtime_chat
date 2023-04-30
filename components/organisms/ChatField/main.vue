@@ -1,20 +1,16 @@
 <template>
-  <div class="Chat">
-    <div class="Chat__Header">
-      <UserInfoBox
-        :name="userInfo.name"
-        :isOnline="userInfo.isOnline"
-        :time="userInfo.time"
-        :offChat="true"
-      />
+  <div class="ChatField">
+    <div class="ChatField__Header">
+      <UserInfoBox :name="userInfo.name" :isOnline="userInfo.isOnline" />
     </div>
-    <p class="Chat__UnderLine"></p>
+    <p class="ChatField__UnderLine" />
     <CardList />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent, inject } from "@nuxtjs/composition-api";
+import { userInfoKey } from "@/pages/store";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import CardList from "@/components/organisms/CardList/main.vue";
 
@@ -24,11 +20,7 @@ export default defineComponent({
     UserInfoBox,
   },
   setup() {
-    const userInfo = {
-      name: "テスト太郎",
-      isOnline: true,
-      time: new Date(),
-    };
+    const userInfo = inject(userInfoKey);
 
     return {
       userInfo,
