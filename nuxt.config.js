@@ -3,7 +3,10 @@ export default {
   head: {
     title: 'nuxt2',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
+    },
+    bodyAttrs: {
+      class: 'body'
     },
     meta: [
       { charset: 'utf-8' },

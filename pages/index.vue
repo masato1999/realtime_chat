@@ -15,15 +15,11 @@ export default defineComponent({
     console.log('index.vue')
   },
 })
-// export default defineComponent({
-//   name: 'sample',
-//   layout: 'ore',
-//   data() {
-//     return {
-//       header: {
-//         title: 'ページタイトル',
-//       },
-//     }
-//   },
-// })
 </script>
+
+<style lang="scss">
+.body {
+  height: 100vh;
+  margin: 0;
+}
+</style>
