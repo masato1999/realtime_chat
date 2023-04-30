@@ -2,7 +2,7 @@
   <div class="UserInfoBox">
     <img src="@/assets/img/carrot.png" class="UserInfoBox__Icon" />
     <div class="UserInfoBox__Info">
-      <div class="UserInfoBox__Name">{{ props.name }}</div>
+      <div class="UserInfoBox__Name">{{ name }}</div>
       <div class="UserInfoBox__Status">
         <span
           class="UserInfoBox__StatusIcon"
@@ -48,7 +48,6 @@ export default defineComponent({
       : "";
 
     return {
-      props,
       userStatus,
       shapingTime,
     };

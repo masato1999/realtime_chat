@@ -8,7 +8,7 @@
       />
     </div>
     <dir class="CardItem__Text">
-      {{ props.message }}
+      {{ message }}
     </dir>
   </div>
 </template>
@@ -32,7 +32,6 @@ export default defineComponent({
     const userInfo = inject(userInfoKey);
 
     return {
-      props,
       userInfo,
     };
   },
