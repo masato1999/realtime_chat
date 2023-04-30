@@ -1,8 +1,10 @@
 <template>
   <div class="Layout">
     <Header class="Layout__Header" />
-    <Sidebar class="Layout__Sidebar" />
-    <nuxt class="Layout__Main" />
+    <div class="Layout__Container">
+      <Sidebar class="Layout__Sidebar" />
+      <nuxt class="Layout__Main" />
+    </div>
   </div>
 </template>
 
@@ -11,7 +13,7 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent } from "@nuxtjs/composition-api";
 import Header from "@/components/organisms/Header/main.vue";
 import Sidebar from "@/components/organisms/Sidebar/main.vue";
 

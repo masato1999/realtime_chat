@@ -9,7 +9,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, inject } from "@nuxtjs/composition-api";
+import { messageListKey } from "@/pages/store";
 import CardItem from "@/components/organisms/CardItem/main.vue";
 
 export default defineComponent({
@@ -17,12 +18,7 @@ export default defineComponent({
     CardItem,
   },
   setup() {
-    const messageList = [
-      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
-      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
-      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
-      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
-    ];
+    const messageList = inject(messageListKey);
 
     return {
       messageList,

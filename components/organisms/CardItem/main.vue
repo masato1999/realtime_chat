@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, inject } from "vue";
+import { defineComponent, computed, inject } from "@nuxtjs/composition-api";
 import { userInfoKey } from "@/pages/store";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
