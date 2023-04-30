@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import UserInfoBox from '@/components/molecules/UserInfoBox/main.vue'
+import { defineComponent, computed } from "vue";
+import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({
   components: {
@@ -28,22 +28,22 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const messageDetail = computed(() => props.message)
+    const messageDetail = computed(() => props.message);
 
     const userInfo = {
-      name: 'テスト太郎',
+      name: "テスト太郎",
       isOnline: true,
       time: new Date(),
-    }
+    };
 
     return {
       messageDetail,
       userInfo,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import './style';
+@import "./style";
 </style>

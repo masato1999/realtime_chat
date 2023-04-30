@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import Card from '@/components/organisms/Card/main.vue'
+import { defineComponent } from "@nuxtjs/composition-api";
+import Card from "@/components/organisms/Card/main.vue";
 
 export default defineComponent({
   components: {
@@ -14,19 +14,19 @@ export default defineComponent({
   },
   setup() {
     const messageList = [
-      'ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。',
-      'ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。',
-      'ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。',
-      'ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。',
-    ]
+      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
+      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
+      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
+      "ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。",
+    ];
 
     return {
       messageList,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import './style';
+@import "./style";
 </style>

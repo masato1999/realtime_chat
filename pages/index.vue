@@ -3,18 +3,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import Chat from '@/components/organisms/Chat/main.vue'
+import { defineComponent } from "@nuxtjs/composition-api";
+import Chat from "@/components/organisms/Chat/main.vue";
 
 export default defineComponent({
-  layout: 'layout',
+  layout: "layout",
   components: {
     Chat,
   },
   setup() {
-    console.log('index.vue')
+    console.log("index.vue");
   },
-})
+});
 </script>
 
 <style lang="scss">
