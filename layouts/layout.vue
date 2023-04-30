@@ -1,8 +1,10 @@
 <template>
   <div class="Layout">
     <Header class="Layout__Header" />
-    <Sidebar class="Layout__Sidebar" />
-    <nuxt class="Layout__Main" />
+    <div class="Layout__Container">
+      <Sidebar class="Layout__Sidebar" />
+      <nuxt class="Layout__Main" />
+    </div>
   </div>
 </template>
 
