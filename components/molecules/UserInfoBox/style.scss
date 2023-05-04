@@ -1,7 +1,7 @@
 .UserInfoBox {
   display: flex;
   width: 300px;
-  height: 35px;
+  height:  40px;
 
   &__Icon {
     border-radius: 50%;
@@ -10,10 +10,6 @@
   &__Info {
     color: #09222B;
     margin-left: 5px;
-  }
-
-  &__Name {
-    font-size: 16px;
   }
 
   &__Status {
@@ -44,9 +40,5 @@
     margin-left: 10px;
     color: #6F6F6F;
     line-height: 24px;
-
-    &--hidden {
-      display: none;
-    }
   }
 }
