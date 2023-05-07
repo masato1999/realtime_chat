@@ -7,9 +7,9 @@
         :dateTime="userInfo.dateTime"
       />
     </div>
-    <dir class="CardItem__Text">
+    <p class="CardItem__Text">
       {{ message }}
-    </dir>
+    </p>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default defineComponent({
       type: String,
     },
   },
-  setup(props) {
+  setup() {
     const userInfo = inject(userInfoKey);
 
     return {

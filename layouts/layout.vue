@@ -8,10 +8,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import "./style";
-</style>
-
 <script lang="ts">
 import { defineComponent } from "@nuxtjs/composition-api";
 import Header from "@/components/organisms/Header/main.vue";
@@ -24,3 +20,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+@import "./style";
+</style>
