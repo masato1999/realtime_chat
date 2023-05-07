@@ -3,4 +3,12 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  &__Interval {
+    margin-right: 10px;
+  }
+
+  &__FormInput {
+    width: 160px;
+  }
 }

@@ -1,19 +1,41 @@
 <template>
   <div class="Header">
-    <FormButton>検索</FormButton>
+    <FormInput
+      class="Header__Interval Header__FormInput"
+      :value="state.searchKeyword"
+      @input="state.searchKeyword = $event"
+    />
+    <FormButton class="Header__Interval" @click="onSearch">検索</FormButton>
+    <img
+      class="Header__Interval Header__Icon"
+      src="@/assets/img/whiteUser.png"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent, reactive } from "@nuxtjs/composition-api";
 import FormButton from "@/components/atoms/FormButton/main.vue";
+import FormInput from "@/components/atoms/FormInput/main.vue";
 
 export default defineComponent({
   components: {
     FormButton,
+    FormInput,
   },
   setup() {
-    return {};
+    const state = reactive({
+      searchKeyword: "",
+    });
+
+    const onSearch = () => {
+      console.log("Header: onSearch");
+    };
+
+    return {
+      state,
+      onSearch,
+    };
   },
 });
 </script>
