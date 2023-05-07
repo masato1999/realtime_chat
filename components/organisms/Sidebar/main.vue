@@ -1,13 +1,15 @@
 <template>
   <div class="Sidebar">
     <div class="Sidebar__Menu">
-      <p class="Sidebar__Name">プロジェクト名</p>
-      <p class="Sidebar__UnderLine"></p>
-      <p class="Sidebar__Text1">テキスト1</p>
-      <p class="Sidebar__Text2">テキスト123</p>
-      <p class="Sidebar__Text3">テキスト56</p>
-      <p class="Sidebar__Text4">テキスト000</p>
-      <p class="Sidebar__UnderLine"></p>
+      <p class="Sidebar__Title">プロジェクト名</p>
+      <span class="Sidebar__UnderLine" />
+      <div class="Sidebar__MenuContainer">
+        <p class="Sidebar__Text Sidebar__Text--First">テキスト1</p>
+        <p class="Sidebar__Text Sidebar__Text--Second">テキスト123</p>
+        <p class="Sidebar__Text Sidebar__Text--Third">テキスト56</p>
+        <p class="Sidebar__Text Sidebar__Text--Fourth">テキスト000</p>
+      </div>
+      <span class="Sidebar__UnderLine" />
     </div>
   </div>
 </template>

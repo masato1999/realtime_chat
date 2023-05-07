@@ -1,7 +1,7 @@
 .UserInfoBox {
   display: flex;
-  width: 100%;
-  height: 23px;
+  width: 300px;
+  height: 40px;
 
   &__Icon {
     border-radius: 50%;
@@ -12,13 +12,9 @@
     margin-left: 5px;
   }
 
-  &__Name {
-    font-size: 10px;
-  }
-
   &__Status {
     display: flex;
-    font-size: 7px;
+    font-size: 12px;
     
     & p {
       margin: 0;
@@ -27,7 +23,8 @@
 
   &__StatusIcon {
     color: #C3C3C3;
-    font-size: 7px;
+    font-size: 12px;
+    margin-right: 4px;
 
     &--Green {
       color: #6DDC46;
@@ -35,14 +32,14 @@
   }
 
   &__StatusMessage {
-    font-size: 7px;
+    font-size: 12px;
+    color: #6F6F6F;
   }
 
   &__Time {
-    font-size: 6px;
-
-    &--hidden {
-      display: none;
-    }
+    font-size: 14px;
+    margin-left: 10px;
+    color: #6F6F6F;
+    line-height: 24px;
   }
 }

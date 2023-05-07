@@ -3,7 +3,7 @@
     <div class="ChatField__Header">
       <UserInfoBox :name="userInfo.name" :isOnline="userInfo.isOnline" />
     </div>
-    <p class="ChatField__UnderLine" />
+    <span class="ChatField__UnderLine" />
     <CardList />
   </div>
 </template>

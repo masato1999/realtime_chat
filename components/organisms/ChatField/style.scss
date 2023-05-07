@@ -1,11 +1,11 @@
 .ChatField {
   &__Header {
-    padding: 1%;
+    padding: 16px;
   }
 
   &__UnderLine {
-    margin-top: 5px;
-    margin-bottom: 0;
-    border:solid #C3C3C3 0.5px;
+    margin: 0;
+    display: block;
+    border:rgb(195,195,195,0.8) 1px solid;
   }
 }

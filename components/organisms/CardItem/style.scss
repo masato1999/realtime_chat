@@ -1,14 +1,12 @@
 .CardItem {
-  height: 60px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around; 
-  margin-top: 2%;
-  
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   &__Text {
-    margin: 0;
-    padding: 0;
-    color: #09222B;
-    font-size: 10px;
+    margin-top: 8px;
+    color: #09222b;
   }
 }
