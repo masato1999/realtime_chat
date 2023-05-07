@@ -1,11 +1,8 @@
 export default {
   head: {
-    title: 'nuxt2',
+    title: 'realtime_chat',
     htmlAttrs: {
       lang: 'ja'
-    },
-    bodyAttrs: {
-      class: 'body'
     },
     meta: [
       { charset: 'utf-8' },
@@ -18,6 +15,7 @@ export default {
     ]
   },
   css: [
+    '@/assets/css/style.scss'
   ],
   plugins: [],
   components: true,
