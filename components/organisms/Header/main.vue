@@ -1,15 +1,12 @@
 <template>
   <div class="Header">
     <FormInput
-      class="Header__Interval Header__FormInput"
+      class="Header__FormInput"
       :value="state.searchKeyword"
       @input="state.searchKeyword = $event"
     />
-    <FormButton class="Header__Interval" @click="onSearch">検索</FormButton>
-    <img
-      class="Header__Interval Header__Icon"
-      src="@/assets/img/whiteUser.png"
-    />
+    <FormButton @click="onSearch">検索</FormButton>
+    <img class="Header__Icon" src="@/assets/img/whiteUser.png" />
   </div>
 </template>
 

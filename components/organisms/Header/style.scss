@@ -1,10 +1,10 @@
 .Header {
-  background-color: #09222B;
+  background-color: #09222b;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
-  &__Interval {
+  & > * {
     margin-right: 10px;
   }
 

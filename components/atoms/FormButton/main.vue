@@ -13,13 +13,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from "@nuxtjs/composition-api";
+import {
+  defineComponent,
+  PropType,
+  SetupContext,
+} from "@nuxtjs/composition-api";
+import { FormButton } from "./types";
 
 export default defineComponent({
   props: {
     size: {
       default: "small",
-      type: String,
+      type: String as PropType<FormButton>,
     },
   },
   setup(_, context: SetupContext) {

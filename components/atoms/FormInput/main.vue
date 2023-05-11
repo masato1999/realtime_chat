@@ -6,14 +6,16 @@
 import {
   defineComponent,
   SetupContext,
+  PropType,
   computed,
 } from "@nuxtjs/composition-api";
+import { Type } from "./types";
 
 export default defineComponent({
   props: {
     type: {
       default: "text",
-      type: String,
+      type: String as PropType<Type>,
     },
     value: {
       default: "",
