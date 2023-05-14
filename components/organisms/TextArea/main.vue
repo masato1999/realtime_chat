@@ -1,8 +1,8 @@
 <template>
-  <div class="TextArea">
-    <textarea class="TextArea__InputArea" :value="value" @input="updateValue">
-    </textarea>
-    <FormButton class="TextArea__Button" @click="onSendMessage"
+  <div class="Textarea">
+    <Textarea class="Textarea__InputArea" :value="value" @input="updateValue">
+    </Textarea>
+    <FormButton class="Textarea__Button" @click="onSendMessage"
       >送信</FormButton
     >
   </div>
@@ -40,7 +40,7 @@ export default defineComponent({
     };
 
     const onSendMessage = () => {
-      console.log("TextArea: onSendMessage");
+      console.log("Textarea: onSendMessage");
     };
 
     return {

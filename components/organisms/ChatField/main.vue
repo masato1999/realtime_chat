@@ -5,7 +5,7 @@
     </div>
     <span class="ChatField__UnderLine" />
     <CardList />
-    <TextArea class="ChatField__TextArea" />
+    <Textarea class="ChatField__Textarea" />
   </div>
 </template>
 
@@ -14,13 +14,13 @@ import { defineComponent, inject } from "@nuxtjs/composition-api";
 import { userInfoKey } from "@/pages/store";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import CardList from "@/components/organisms/CardList/main.vue";
-import TextArea from "@/components/organisms/TextArea/main.vue";
+import Textarea from "@/components/organisms/Textarea/main.vue";
 
 export default defineComponent({
   components: {
     CardList,
     UserInfoBox,
-    TextArea,
+    Textarea,
   },
   setup() {
     const userInfo = inject(userInfoKey);
