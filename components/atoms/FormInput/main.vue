@@ -3,12 +3,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  SetupContext,
-  PropType,
-  computed,
-} from "@nuxtjs/composition-api";
+import { defineComponent, SetupContext, PropType, computed } from "@nuxtjs/composition-api";
 import { Type } from "./types";
 
 export default defineComponent({
