@@ -8,38 +8,38 @@
   }
 
   &__Info {
-    color: #09222B;
+    color: #09222b;
     margin-left: 5px;
   }
 
   &__Status {
     display: flex;
     font-size: 12px;
-    
+
     & p {
       margin: 0;
     }
   }
 
   &__StatusIcon {
-    color: #C3C3C3;
+    color: #c3c3c3;
     font-size: 12px;
     margin-right: 4px;
 
     &--Green {
-      color: #6DDC46;
+      color: #6ddc46;
     }
   }
 
   &__StatusMessage {
     font-size: 12px;
-    color: #6F6F6F;
+    color: #6f6f6f;
   }
 
   &__Time {
     font-size: 14px;
     margin-left: 10px;
-    color: #6F6F6F;
+    color: #6f6f6f;
     line-height: 24px;
   }
 }
