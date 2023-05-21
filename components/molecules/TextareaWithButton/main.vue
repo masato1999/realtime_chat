@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext, reactive } from "@nuxtjs/composition-api";
-import FormButton from "@/components/atoms/FormButton/main.vue";
 import { State } from "./types";
+import FormButton from "@/components/atoms/FormButton/main.vue";
 
 export default defineComponent({
   components: {

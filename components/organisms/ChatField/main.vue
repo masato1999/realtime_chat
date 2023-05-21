@@ -1,17 +1,20 @@
 <template>
   <div class="ChatField">
     <div class="ChatField__Header">
-      <UserInfoBox :name="userInfo.name" :isOnline="userInfo.isOnline" />
+      <div class="ChatField__UserInfoBox">
+        <UserInfoBox :name="userInfo.name" :isOnline="userInfo.isOnline" />
+      </div>
+      <span class="ChatField__UnderLine" />
     </div>
-    <span class="ChatField__UnderLine" />
-    <CardList />
-    <TextareaWithButton class="ChatField__Textarea" @updateValue="state.message = $event" />
+    <CardList class="ChatField__CardList" />
+    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="post($event)" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject, reactive } from "@nuxtjs/composition-api";
 import { userInfoKey } from "@/pages/store";
+import { State } from "./types";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import CardList from "@/components/organisms/CardList/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
@@ -25,13 +28,19 @@ export default defineComponent({
   setup() {
     const userInfo = inject(userInfoKey);
 
-    const state = reactive<any>({
+    const state = reactive<State>({
       message: "",
     });
+
+    const post = ($event: any) => {
+      console.log("ChatField: post");
+      state.message = $event;
+    };
 
     return {
       userInfo,
       state,
+      post,
     };
   },
 });

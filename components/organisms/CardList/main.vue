@@ -1,10 +1,6 @@
 <template>
   <div class="CardList">
-    <CardItem
-      v-for="(massage, key) in messageList"
-      :key="key"
-      :message="massage"
-    />
+    <CardItem v-for="(message, key) in messageList" :key="key" :message="message" />
   </div>
 </template>
 

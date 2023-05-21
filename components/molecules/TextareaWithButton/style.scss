@@ -1,7 +1,6 @@
 .TextareaWithButton {
-  display: block;
-
   &__InputArea {
+    display: block;
     resize: none;
     width: 100%;
     height: 120px;
@@ -10,6 +9,7 @@
     border-radius: 5px 5px 0 0;
     border: rgb(195, 195, 195) 2px solid;
     border-bottom: none;
+    outline: none;
   }
 
   &__ButtonArea {
