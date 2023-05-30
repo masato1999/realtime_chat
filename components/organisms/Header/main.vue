@@ -5,7 +5,7 @@
       :value="state.searchKeyword"
       @input="state.searchKeyword = $event"
     />
-    <FormButton @click="onSearch">検索</FormButton>
+    <FormButton @click="onSearch">{{ buttonName }}</FormButton>
     <img class="Header__Icon" src="@/assets/img/whiteUser.png" />
   </div>
 </template>
@@ -20,6 +20,12 @@ export default defineComponent({
     FormButton,
     FormInput,
   },
+  props: {
+    buttonName: {
+      default: "検索",
+      type: String,
+    },
+  },
   setup() {
     const state = reactive({
       searchKeyword: "",
@@ -27,6 +33,7 @@ export default defineComponent({
 
     const onSearch = () => {
       console.log("Header: onSearch");
+      state.searchKeyword = "";
     };
 
     return {

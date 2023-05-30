@@ -2,7 +2,7 @@
   <div class="TextareaWithButton">
     <textarea class="TextareaWithButton__InputArea" v-model="state.value" />
     <div class="TextareaWithButton__ButtonArea">
-      <FormButton class="TextareaWithButton__ButtonArea--position" @click="updateValue">
+      <FormButton @click="updateValue">
         {{ buttonName }}
       </FormButton>
     </div>

@@ -21,9 +21,12 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const value = computed(() => props.value);
 
-    const updateValue = (event: any) => {
+    const updateValue = (event: Event) => {
       console.log("FormInput: updateValue");
-      context.emit("input", event.target.value);
+
+      if (event.target instanceof HTMLInputElement) {
+        context.emit("input", event.target.value);
+      }
     };
 
     return {

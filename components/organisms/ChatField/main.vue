@@ -15,8 +15,8 @@
 import { defineComponent, inject, reactive } from "@nuxtjs/composition-api";
 import { userInfoKey } from "@/pages/store";
 import { State } from "./types";
-import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import CardList from "@/components/organisms/CardList/main.vue";
+import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
 
 export default defineComponent({
@@ -32,7 +32,7 @@ export default defineComponent({
       message: "",
     });
 
-    const post = ($event: any) => {
+    const post = ($event: string) => {
       console.log("ChatField: post");
       state.message = $event;
     };
