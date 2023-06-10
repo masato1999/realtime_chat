@@ -2,9 +2,9 @@
   <div class="CardItem">
     <div class="CardItem__UserInfoBox">
       <UserInfoBox
-        :name="userInfo.name"
-        :isOnline="userInfo.isOnline"
-        :dateTime="userInfo.dateTime"
+        :name="state.userInfo.name"
+        :isOnline="state.userInfo.isOnline"
+        :dateTime="state.userInfo.dateTime"
       />
     </div>
     <p class="CardItem__Text">
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from "@nuxtjs/composition-api";
-import { userInfoKey } from "@/pages/store";
+import { chatKey } from "@/pages/store";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({
@@ -29,10 +29,18 @@ export default defineComponent({
     },
   },
   setup() {
-    const userInfo = inject(userInfoKey);
+    const store = inject(chatKey);
+
+    if (!store) {
+      throw new Error("CardItem_store is undefined");
+    }
+
+    const { state, fetchChatList } = store;
+
+    fetchChatList();
 
     return {
-      userInfo,
+      state,
     };
   },
 });

@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref } from "@firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -9,6 +8,5 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
 };
-const firebase = initializeApp(firebaseConfig);
 
-export const database = ref(getDatabase(firebase), "chat");
+export const firebase = initializeApp(firebaseConfig);
