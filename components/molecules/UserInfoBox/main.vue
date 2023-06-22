@@ -13,15 +13,14 @@
         <p class="UserInfoBox__StatusMessage">{{ userStatus }}</p>
       </div>
     </div>
-    <div v-if="shapingTime !== ''" class="UserInfoBox__Time">
-      {{ shapingTime }}
+    <div v-if="props.dateTime !== ''" class="UserInfoBox__Time">
+      {{ props.dateTime }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from "@nuxtjs/composition-api";
-import moment from "moment";
 
 export default defineComponent({
   props: {
@@ -39,17 +38,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const userStatus = computed(() =>
-      props.isOnline ? "オンライン" : "オフライン",
-    );
-
-    const shapingTime: string = props.dateTime
-      ? moment(props.dateTime).format("MM/DD h:mm:ss")
-      : "";
+    const userStatus = computed(() => (props.isOnline ? "オンライン" : "オフライン"));
 
     return {
       userStatus,
-      shapingTime,
+      props,
     };
   },
 });

@@ -1,6 +1,11 @@
 <template>
   <div class="CardList">
-    <CardItem v-for="(message, key) in state.messageList" :key="key" :message="message" />
+    <CardItem
+      v-for="(message, key) in state.messageList"
+      :key="key"
+      :message="message.message"
+      :dateTime="message.dateTime"
+    />
   </div>
 </template>
 

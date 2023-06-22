@@ -9,24 +9,24 @@ export const chat = (() => {
   const state = reactive<Store>({
     userInfo: {
       name: "",
-      dateTime: "",
       isOnline: false,
     },
     messageList: [],
   });
 
   const fetchChatList = () => {
-    const db = ref(getDatabase(firebase), "chat");;
+    const db = ref(getDatabase(firebase), "chat");
     onValue(db, async (snapshot) => {
       const response = await snapshot.val();
 
-      const MessageListArray = Object.keys(response.MessageList).map((data) => {
-        return response.MessageList[data]
+      const messageListArray = Object.keys(response.UserInfo.MessageList).map((data) => {
+        return response.UserInfo.MessageList[data]
       })
 
       if (response) {
-        state.messageList = MessageListArray;
-        state.userInfo = { ...response.UserInfo };
+        state.messageList = messageListArray;
+        state.userInfo.isOnline = response.UserInfo.isOnline;
+        state.userInfo.name = response.UserInfo.name;
       }
 
     })

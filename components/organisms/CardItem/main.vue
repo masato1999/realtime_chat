@@ -4,7 +4,7 @@
       <UserInfoBox
         :name="state.userInfo.name"
         :isOnline="state.userInfo.isOnline"
-        :dateTime="state.userInfo.dateTime"
+        :dateTime="dateTime"
       />
     </div>
     <p class="CardItem__Text">
@@ -26,6 +26,10 @@ export default defineComponent({
     message: {
       default: "",
       type: String,
+    },
+    dateTime: {
+      default: "",
+      type: [Date, String],
     },
   },
   setup() {

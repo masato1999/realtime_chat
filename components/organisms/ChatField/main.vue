@@ -19,6 +19,7 @@ import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
 import { getDatabase, ref, push } from "@firebase/database";
 import { firebase } from "@/plugins/firebase";
+import moment from "moment";
 
 export default defineComponent({
   components: {
@@ -37,13 +38,16 @@ export default defineComponent({
 
     fetchChatList();
 
-    console.log("ChatField: state", state);
-
     const post = ($event: string) => {
       console.log("ChatField: post");
 
+      const values = {
+        message: $event,
+        dateTime: moment(new Date().toString()).format("MM/DD HH:mm:ss"),
+      };
+
       const db = getDatabase(firebase);
-      push(ref(db, "chat/MessageList"), $event);
+      push(ref(db, "chat/UserInfo/MessageList"), values);
     };
 
     return {
