@@ -1,5 +1,13 @@
-export type UserInfo = {
+type UserInfo = {
   name: string;
   isOnline: boolean;
-  dateTime: Date;
+}
+type MessageInfo = {
+  dateTime: string;
+  message: string;
+}
+
+export type Store = {
+  userInfo: UserInfo,
+  messageList: MessageInfo[],
 }

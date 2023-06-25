@@ -1,12 +1,17 @@
 <template>
   <div class="CardList">
-    <CardItem v-for="(message, key) in messageList" :key="key" :message="message" />
+    <CardItem
+      v-for="(message, key) in state.messageList"
+      :key="key"
+      :message="message.message"
+      :dateTime="message.dateTime"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from "@nuxtjs/composition-api";
-import { messageListKey } from "@/pages/store";
+import { chatKey } from "@/pages/store";
 import CardItem from "@/components/organisms/CardItem/main.vue";
 
 export default defineComponent({
@@ -14,10 +19,16 @@ export default defineComponent({
     CardItem,
   },
   setup() {
-    const messageList = inject(messageListKey);
+    const store = inject(chatKey);
+
+    if (!store) {
+      throw new Error("CardList_store is undefined");
+    }
+
+    const { state } = store;
 
     return {
-      messageList,
+      state,
     };
   },
 });
