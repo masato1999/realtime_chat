@@ -17,9 +17,6 @@ import { chatKey } from "@/pages/store";
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
-import { getDatabase, ref, push } from "@firebase/database";
-import { firebase } from "@/plugins/firebase";
-import moment from "moment";
 
 export default defineComponent({
   components: {
@@ -34,20 +31,14 @@ export default defineComponent({
       throw new Error("test");
     }
 
-    const { state, fetchChatList } = store;
+    const { state, fetchChatList, updateChatList } = store;
 
     fetchChatList();
 
     const post = ($event: string) => {
       console.log("ChatField: post");
 
-      const values = {
-        message: $event,
-        dateTime: moment(new Date().toString()).format("MM/DD HH:mm:ss"),
-      };
-
-      const db = getDatabase(firebase);
-      push(ref(db, "chat/UserInfo/MessageList"), values);
+      updateChatList($event);
     };
 
     return {

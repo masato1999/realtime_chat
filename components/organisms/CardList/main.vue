@@ -25,9 +25,7 @@ export default defineComponent({
       throw new Error("CardList_store is undefined");
     }
 
-    const { state, fetchChatList } = store;
-
-    fetchChatList();
+    const { state } = store;
 
     return {
       state,

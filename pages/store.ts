@@ -3,7 +3,8 @@ import { Store } from './types'
 import { reactive } from "@nuxtjs/composition-api";
 import { firebase } from "@/plugins/firebase";
 import { onValue } from "@firebase/database";
-import { getDatabase, ref } from "@firebase/database";
+import { getDatabase, ref, push } from "@firebase/database";
+import moment from "moment";
 
 export const chat = (() => {
   const state = reactive<Store>({
@@ -32,9 +33,20 @@ export const chat = (() => {
     })
   }
 
+  const updateChatList = (messsage: string) => {
+    const values = {
+      message: messsage,
+      dateTime: moment(new Date().toString()).format("MM/DD HH:mm:ss"),
+    };
+
+    const db = getDatabase(firebase);
+    push(ref(db, "chat/UserInfo/MessageList"), values);
+  }
+
   return {
     state,
-    fetchChatList
+    fetchChatList,
+    updateChatList
   }
 })();
 
