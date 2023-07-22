@@ -7,12 +7,12 @@
       <span class="ChatField__UnderLine" />
     </div>
     <CardList class="ChatField__CardList" />
-    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="post($event)" />
+    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="handleClick($event)" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from "@nuxtjs/composition-api";
+import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
 import { chatKey } from "@/pages/store";
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
@@ -25,6 +25,12 @@ export default defineComponent({
     TextareaWithButton,
   },
   setup() {
+    onMounted(async () => {
+      console.log("ChatField: onMounted");
+
+      fetchChatList();
+    });
+
     const store = inject(chatKey);
 
     if (!store) {
@@ -33,17 +39,21 @@ export default defineComponent({
 
     const { state, fetchChatList, updateChatList } = store;
 
-    fetchChatList();
-
-    const post = ($event: string) => {
-      console.log("ChatField: post");
-
+    const handleClick = async ($event: string) => {
+      console.log("ChatField: handleClick");
       updateChatList($event);
+
+      await nextTick();
+
+      const contentContainer = document.getElementById("scrollToBottom");
+      contentContainer?.scrollIntoView({
+        behavior: "smooth",
+      });
     };
 
     return {
       state,
-      post,
+      handleClick,
     };
   },
 });
