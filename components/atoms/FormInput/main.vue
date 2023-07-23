@@ -4,7 +4,8 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext, PropType, computed } from "@nuxtjs/composition-api";
-import { Type } from "./types";
+
+type Type = "text" | "number";
 
 export default defineComponent({
   props: {
