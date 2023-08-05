@@ -6,26 +6,66 @@ import moment from "moment";
 
 export const chat = (() => {
   const state = reactive<Store>({
-    userInfo: {
-      name: "",
-      isOnline: false,
-    },
-    messageList: [],
+    messageList: [{
+      id: 1,
+      dateTime: "",
+      message: "",
+      userId: "",
+      user: {
+        id: 1,
+        imagePath: "",
+        isLoggedIn: false,
+        loginId: "",
+        userName: "",
+      },
+    }],
+    user: {
+      id: 1,
+      imagePath: "",
+      isLoggedIn: false,
+      loginId: "",
+      userName: "",
+    }
   });
 
-  const fetchChatList = () => {
-    const db = ref(getDatabase(firebase), "realtimeChat");
-    onValue(db, async (snapshot) => {
-      const response = await snapshot.val();
 
-      if (response) {
-        state.messageList = Object.keys(response.UserInfo.MessageList).map((data) => {
-          return response.UserInfo.MessageList[data]
+  const fetchChatList = async () => {
+    console.log("store: fetchChatList");
+
+    const db = getDatabase(firebase);
+
+    const getMessagesWithUser = async () => {
+      return new Promise((resolve, reject) => {
+        // メッセージのPromise配列を作成
+        const messagesPromises: any = [];
+
+        // メッセージを取得
+        onValue(ref(db, 'message_list'), (snapshot) => {
+          const messages = snapshot.val();
+
+          // メッセージごとにユーザー情報を取得
+          for (let key in messages) {
+            const message = messages[key];
+            const userPromise = new Promise((resolve) => {
+              onValue(ref(db, 'users/' + message.userId), (snapshot) => {
+                const user = snapshot.val();
+                // ユーザー情報をメッセージに追加
+                message.user = user;
+                resolve(message);
+              });
+            });
+            messagesPromises.push(userPromise);
+          }
+          // Promise配列を待つ
+          Promise.all(messagesPromises).then(resolve).catch(reject);
         });
-        state.userInfo.isOnline = response.UserInfo.isOnline;
-        state.userInfo.name = response.UserInfo.name;
-      }
-    })
+      });
+    }
+
+    getMessagesWithUser()
+      .then((response: any) => {
+        state.messageList = response;
+      });
   }
 
   const updateChatList = (message: string) => {

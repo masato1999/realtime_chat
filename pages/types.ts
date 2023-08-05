@@ -1,13 +1,20 @@
 type UserInfo = {
-  name: string;
-  isOnline: boolean;
+  id: number;
+  imagePath: string;
+  isLoggedIn: boolean;
+  loginId: string;
+  userName: string;
 }
-type MessageInfo = {
+
+export type MessageListItem = {
+  id: number;
   dateTime: string;
   message: string;
+  userId: string;
+  user: UserInfo;
 }
 
 export type Store = {
-  userInfo: UserInfo,
-  messageList: MessageInfo[],
+  messageList: MessageListItem[],
+  user: UserInfo
 }

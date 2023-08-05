@@ -2,7 +2,7 @@
   <div class="ChatField">
     <div class="ChatField__Header">
       <div class="ChatField__UserInfoBox">
-        <UserInfoBox :name="state.userInfo.name" :isOnline="state.userInfo.isOnline" />
+        <UserInfoBox :name="name" :isOnline="false" />
       </div>
       <span class="ChatField__UnderLine" />
     </div>
@@ -51,7 +51,10 @@ export default defineComponent({
       });
     };
 
+    const name = "テスト";
+
     return {
+      name,
       state,
       handleClick,
     };

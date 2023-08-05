@@ -1,11 +1,7 @@
 <template>
   <div class="CardItem">
     <div class="CardItem__UserInfoBox">
-      <UserInfoBox
-        :name="state.userInfo.name"
-        :isOnline="state.userInfo.isOnline"
-        :dateTime="dateTime"
-      />
+      <slot />
     </div>
     <p class="CardItem__Text">
       {{ message }}
@@ -26,10 +22,6 @@ export default defineComponent({
     message: {
       default: "",
       type: String,
-    },
-    dateTime: {
-      default: "",
-      type: [Date, String],
     },
   },
   setup() {

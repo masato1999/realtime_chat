@@ -1,12 +1,17 @@
 <template>
   <div class="CardList">
     <CardItem
-      v-for="(message, key) in state.messageList"
+      v-for="(messageItem, key) in state.messageList"
       :key="key"
-      :message="message.message"
-      :dateTime="message.dateTime"
+      :message="messageItem.message"
       :id="key === state.messageList.length - 1 ? 'scrollToBottom' : ''"
-    />
+    >
+      <UserInfoBox
+        :name="messageItem.user.userName"
+        :isOnline="messageItem.user.isLoggedIn"
+        :dateTime="messageItem.dateTime"
+      />
+    </CardItem>
   </div>
 </template>
 
@@ -14,10 +19,12 @@
 import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
 import { chatKey } from "@/pages/store";
 import CardItem from "@/components/organisms/CardItem/main.vue";
+import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({
   components: {
     CardItem,
+    UserInfoBox,
   },
   setup() {
     onMounted(async () => {
