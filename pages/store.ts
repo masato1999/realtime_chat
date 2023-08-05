@@ -28,35 +28,35 @@ export const chat = (() => {
     }
   });
 
-
   const fetchChatList = async () => {
     console.log("store: fetchChatList");
-
     const db = getDatabase(firebase);
 
     const getMessagesWithUser = async () => {
       return new Promise((resolve, reject) => {
-        // メッセージのPromise配列を作成
+        // MEMO: メッセージのPromise配列を作成
         const messagesPromises: any = [];
 
-        // メッセージを取得
+        // MEMO: メッセージを取得
         onValue(ref(db, 'message_list'), (snapshot) => {
           const messages = snapshot.val();
 
-          // メッセージごとにユーザー情報を取得
+          // MEMO: メッセージごとにユーザー情報を取得
           for (let key in messages) {
             const message = messages[key];
             const userPromise = new Promise((resolve) => {
               onValue(ref(db, 'users/' + message.userId), (snapshot) => {
                 const user = snapshot.val();
-                // ユーザー情報をメッセージに追加
+                // MEMO: ユーザー情報をメッセージに追加
                 message.user = user;
                 resolve(message);
               });
             });
+
             messagesPromises.push(userPromise);
           }
-          // Promise配列を待つ
+
+          // MEMO: Promise配列を待つ
           Promise.all(messagesPromises).then(resolve).catch(reject);
         });
       });

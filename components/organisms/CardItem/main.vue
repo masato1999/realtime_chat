@@ -12,6 +12,7 @@
 <script lang="ts">
 import { defineComponent, inject } from "@nuxtjs/composition-api";
 import { chatKey } from "@/pages/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined"
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({
@@ -25,15 +26,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const store = inject(chatKey);
-
-    if (!store) {
-      throw new Error("CardItem_store is undefined");
-    }
-
-    const { state, fetchChatList } = store;
-
-    fetchChatList();
+    const { state } = ensureDefined(inject(chatKey));
 
     return {
       state,

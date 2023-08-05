@@ -18,6 +18,7 @@
 <script lang="ts">
 import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
 import { chatKey } from "@/pages/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined"
 import CardItem from "@/components/organisms/CardItem/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
@@ -27,26 +28,19 @@ export default defineComponent({
     UserInfoBox,
   },
   setup() {
+    const { state } = ensureDefined(inject(chatKey));
+
     onMounted(async () => {
       console.log("CardList: onMounted");
       await nextTick();
 
       nextTick(() => {
-        console.log("CardList: onMounted nextTick");
         const contentContainer = document.getElementById("scrollToBottom");
         contentContainer?.scrollIntoView({
           behavior: "smooth",
         });
       });
     });
-
-    const store = inject(chatKey);
-
-    if (!store) {
-      throw new Error("CardList_store is undefined");
-    }
-
-    const { state } = store;
 
     return {
       state,

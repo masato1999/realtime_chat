@@ -14,6 +14,7 @@
 <script lang="ts">
 import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
 import { chatKey } from "@/pages/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined"
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
@@ -25,19 +26,14 @@ export default defineComponent({
     TextareaWithButton,
   },
   setup() {
+    const { state, fetchChatList, updateChatList } = ensureDefined(inject(chatKey));
+
     onMounted(async () => {
       console.log("ChatField: onMounted");
-
       fetchChatList();
     });
 
-    const store = inject(chatKey);
-
-    if (!store) {
-      throw new Error("test");
-    }
-
-    const { state, fetchChatList, updateChatList } = store;
+    const name = "テスト";
 
     const handleClick = async ($event: string) => {
       console.log("ChatField: handleClick");
@@ -50,8 +46,6 @@ export default defineComponent({
         behavior: "smooth",
       });
     };
-
-    const name = "テスト";
 
     return {
       name,
