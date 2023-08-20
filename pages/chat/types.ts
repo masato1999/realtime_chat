@@ -6,7 +6,7 @@ type UserInfo = {
   userName: string;
 }
 
-export type MessageListItem = {
+type MessageListItem = {
   id: number;
   dateTime: string;
   message: string;
@@ -16,5 +16,4 @@ export type MessageListItem = {
 
 export type Store = {
   messageList: MessageListItem[],
-  user: UserInfo
 }

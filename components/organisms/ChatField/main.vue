@@ -7,14 +7,15 @@
       <span class="ChatField__UnderLine" />
     </div>
     <CardList class="ChatField__CardList" />
-    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="handleClick($event)" />
+    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="onSubmit($event)" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
-import { chatKey } from "@/pages/store";
-import { ensureDefined } from "@/utils/errors/ensureDefined"
+import { defineComponent, inject, onMounted, watch, nextTick } from "@nuxtjs/composition-api";
+import { isEmpty } from "lodash";
+import { chatKey } from "@/pages/chat/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined";
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
@@ -35,22 +36,28 @@ export default defineComponent({
 
     const name = "テスト";
 
-    const handleClick = async ($event: string) => {
-      console.log("ChatField: handleClick");
-      updateChatList($event);
+    const onSubmit = async ($event: string) => {
+      console.log("ChatField: onSubmit");
+      if (isEmpty($event)) return;
 
-      await nextTick();
-
-      const contentContainer = document.getElementById("scrollToBottom");
-      contentContainer?.scrollIntoView({
-        behavior: "smooth",
-      });
+      updateChatList("masato1999", $event);
     };
+
+    watch(state, () => {
+      console.log("ChatField: watch");
+
+      nextTick(() => {
+        const contentContainer = document.getElementById("scrollToBottom");
+        contentContainer?.scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
 
     return {
       name,
       state,
-      handleClick,
+      onSubmit,
     };
   },
 });

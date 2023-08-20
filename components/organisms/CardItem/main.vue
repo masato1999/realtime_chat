@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, inject } from "@nuxtjs/composition-api";
-import { chatKey } from "@/pages/store";
-import { ensureDefined } from "@/utils/errors/ensureDefined"
+import { chatKey } from "@/pages/chat/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({

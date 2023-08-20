@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
-import { chatKey } from "@/pages/store";
-import { ensureDefined } from "@/utils/errors/ensureDefined"
+import { chatKey } from "@/pages/chat/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined";
 import CardItem from "@/components/organisms/CardItem/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
@@ -32,7 +32,6 @@ export default defineComponent({
 
     onMounted(async () => {
       console.log("CardList: onMounted");
-      await nextTick();
 
       nextTick(() => {
         const contentContainer = document.getElementById("scrollToBottom");

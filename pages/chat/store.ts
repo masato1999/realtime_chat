@@ -1,7 +1,7 @@
 import { Store } from './types'
 import { reactive, InjectionKey } from "@nuxtjs/composition-api";
 import { firebase } from "@/plugins/firebase";
-import { getDatabase, ref, push, onValue } from "@firebase/database";
+import { getDatabase, ref, push, onValue, set } from "@firebase/database";
 import moment from "moment";
 
 export const chat = (() => {
@@ -18,14 +18,7 @@ export const chat = (() => {
         loginId: "",
         userName: "",
       },
-    }],
-    user: {
-      id: 1,
-      imagePath: "",
-      isLoggedIn: false,
-      loginId: "",
-      userName: "",
-    }
+    }]
   });
 
   const fetchChatList = async () => {
@@ -68,14 +61,30 @@ export const chat = (() => {
       });
   }
 
-  const updateChatList = (message: string) => {
-    const params = {
-      message: message,
-      dateTime: moment(new Date().toString()).format("MM/DD HH:mm:ss"),
-    };
+  const updateChatList = (userId: string, message: string) => {
+    console.log("store: updateChatList");
 
     const db = getDatabase(firebase);
-    push(ref(db, "realtimeChat/chat/messageList"), params);
+
+    // メッセージリストのリファレンスを取得
+    const messageListRef = ref(db, 'message_list');
+    // 新しいメッセージのリファレンスを作成
+    const newMessageRef = push(messageListRef);
+
+    // データをセット
+    set(newMessageRef, {
+      id: newMessageRef.key,
+      userId: userId,
+      message: message,
+      dateTime: moment(new Date()).format("MM/DD HH:mm:ss"),
+    })
+      .then(() => {
+        console.log('Message data set.');
+        fetchChatList();
+      })
+      .catch((error) => {
+        console.error('Failed to set message data:', error);
+      });
   }
 
   return {

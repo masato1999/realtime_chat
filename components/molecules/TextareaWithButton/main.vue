@@ -1,6 +1,6 @@
 <template>
   <div class="TextareaWithButton">
-    <textarea class="TextareaWithButton__InputArea" v-model="state.value" />
+    <textarea class="TextareaWithButton__InputArea" v-model.trim="state.value" />
     <div class="TextareaWithButton__ButtonArea">
       <FormButton @click="updateValue">
         {{ buttonName }}
