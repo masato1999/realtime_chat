@@ -21,10 +21,10 @@ export const chat = (() => {
     }]
   });
 
+  const db = getDatabase(firebase);
+
   const fetchChatList = async () => {
     console.log("store: fetchChatList");
-    const db = getDatabase(firebase);
-
     const getMessagesWithUser = async () => {
       return new Promise((resolve, reject) => {
         // MEMO: メッセージのPromise配列を作成
@@ -63,9 +63,6 @@ export const chat = (() => {
 
   const updateChatList = (userId: string, message: string) => {
     console.log("store: updateChatList");
-
-    const db = getDatabase(firebase);
-
     // メッセージリストのリファレンスを取得
     const messageListRef = ref(db, 'message_list');
     // 新しいメッセージのリファレンスを作成
