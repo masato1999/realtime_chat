@@ -40,4 +40,12 @@
     width: 100%;
     padding: 24px;
   }
+
+  /* TODO: データ削除のテストとして配置しているため、不要になったら削除する */
+  &__DeleteButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 220px;
+  }
 }

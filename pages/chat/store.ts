@@ -23,42 +23,24 @@ export const chat = (() => {
 
   const db = getDatabase(firebase);
 
-  const fetchChatList = async () => {
+  const fetchChatList = () => {
     console.log("store: fetchChatList");
-    const getMessagesWithUser = async () => {
-      return new Promise((resolve, reject) => {
-        // MEMO: メッセージのPromise配列を作成
-        const messagesPromises: any = [];
+    onValue(ref(db, 'message_list'), (snapshot) => {
+      const messages = snapshot.val();
+      const updatedMessages: any = [];
 
-        // MEMO: メッセージを取得
-        onValue(ref(db, 'message_list'), (snapshot) => {
-          const messages = snapshot.val();
-
-          // MEMO: メッセージごとにユーザー情報を取得
-          for (let key in messages) {
-            const message = messages[key];
-            const userPromise = new Promise((resolve) => {
-              onValue(ref(db, 'users/' + message.userId), (snapshot) => {
-                const user = snapshot.val();
-                // MEMO: ユーザー情報をメッセージに追加
-                message.user = user;
-                resolve(message);
-              });
-            });
-
-            messagesPromises.push(userPromise);
-          }
-
-          // MEMO: Promise配列を待つ
-          Promise.all(messagesPromises).then(resolve).catch(reject);
+      for (let key in messages) {
+        const message = messages[key];
+        onValue(ref(db, 'users/' + message.userId), (userSnapshot) => {
+          const user = userSnapshot.val();
+          // ユーザー情報をメッセージに追加
+          message.user = user;
+          updatedMessages.push(message);
         });
-      });
-    }
+      }
 
-    getMessagesWithUser()
-      .then((response: any) => {
-        state.messageList = response;
-      });
+      state.messageList = updatedMessages;
+    });
   }
 
   const updateChatList = (userId: string, message: string) => {
@@ -84,10 +66,25 @@ export const chat = (() => {
       });
   }
 
+  // TODO: データ削除のテストとして配置しているため、不要になったら削除する
+  const deleteChatList = async () => {
+    console.log("store: deleteChatList");
+    const messageListRef = ref(db, 'message_list');
+
+    set(messageListRef, null)
+      .then(() => {
+        console.log('All messages deleted.');
+      })
+      .catch((error) => {
+        console.error('Failed to delete messages:', error);
+      });
+  };
+
   return {
     state,
     fetchChatList,
-    updateChatList
+    updateChatList,
+    deleteChatList
   }
 })();
 
