@@ -7,9 +7,13 @@
       <span class="ChatField__UnderLine" />
     </div>
     <CardList class="ChatField__CardList" />
-    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="onSubmit($event)" />
+    <TextareaWithButton
+      class="ChatField__TextareaWithButton"
+      size="medium"
+      @updateValue="onSubmit($event)"
+    />
     <!-- TODO: データ削除のテストとして配置しているため、不要になったら削除する -->
-    <FormButton  class="ChatField__DeleteButton" @click="deleteChatList()">
+    <FormButton class="ChatField__DeleteButton" @click="deleteChatList()">
       全てのデータを削除する
     </FormButton>
   </div>

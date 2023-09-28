@@ -9,6 +9,7 @@ import ChatField from "@/components/organisms/ChatField/main.vue";
 
 export default defineComponent({
   layout: "layout",
+  middleware: ["authenticated"],
   components: {
     ChatField,
   },

@@ -17,7 +17,9 @@ export default {
   css: [
     '@/assets/css/style.scss'
   ],
-  plugins: [],
+  plugins: [
+    '@/plugins/fireauth.ts',
+  ],
   components: true,
   buildModules: [
     '@nuxt/typescript-build',
