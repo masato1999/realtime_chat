@@ -12,7 +12,6 @@
       size="medium"
       @updateValue="onSubmit($event)"
     />
-    <!-- TODO: データ削除のテストとして配置しているため、不要になったら削除する -->
     <FormButton class="ChatField__DeleteButton" @click="deleteChatList()">
       全てのデータを削除する
     </FormButton>
@@ -27,7 +26,6 @@ import { ensureDefined } from "@/utils/errors/ensureDefined";
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
-// TODO: データ削除のテストとして配置しているため、不要になったら削除する
 import FormButton from "@/components/atoms/FormButton/main.vue";
 
 export default defineComponent({
@@ -35,7 +33,6 @@ export default defineComponent({
     CardList,
     UserInfoBox,
     TextareaWithButton,
-    // TODO: データ削除のテストとして配置しているため、不要になったら削除する
     FormButton,
   },
   setup() {
@@ -70,7 +67,6 @@ export default defineComponent({
       name,
       state,
       onSubmit,
-      // TODO: データ削除のテストとして配置しているため、不要になったら削除する
       deleteChatList,
     };
   },

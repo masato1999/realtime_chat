@@ -19,13 +19,10 @@ export const useSession = () => {
     console.log("useSession: isLogin");
 
     if (process.server) {
-      // サーバーになることある？？
-      // chatGPT → process.serverを利用して、現在の環境がサーバーサイドかクライアントサイドかを確認しています。
       console.log("isLoginData: login", "process.server");
       const user = getUserFromCookie(req);
       if (user) {
         state.user = user;
-        router.push("/chat");
       }
     } else {
       console.log("isLoginData: login", "process.client");
@@ -41,7 +38,6 @@ export const useSession = () => {
     try {
       console.log("Google authentication login");
       await signInWithRedirect(auth, provider);
-      router.push("/chat");
     } catch (error) {
       console.error("Google authentication failed:", error);
     }

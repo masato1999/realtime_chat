@@ -1,9 +1,17 @@
 import { Middleware } from '@nuxt/types';
 import { auth } from '@/plugins/firebase';
+import Cookies from 'js-cookie';
 
 const authenticated: Middleware = ({ redirect }) => {
-  if (!auth.currentUser) {
-    console.log("auth.currentUser", auth.currentUser)
+  const cookieValue = Cookies.get('access_token');
+  console.log("cookieValue", cookieValue);
+
+  // if (!cookieValue) {
+  //   console.log("cookieValue", cookieValue);
+  //   return redirect('/login');
+  // }
+
+  if (!auth.currentUser && !cookieValue) {
     return redirect('/login');
   }
 };

@@ -1,9 +1,7 @@
 import { auth } from './firebase';
 import Cookies from 'js-cookie';
 
-export default (context: any): Promise<void> => {
-  const { store } = context;
-
+export default (): Promise<void> => {
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged(user => {
       console.log("auth's state changed!", user);

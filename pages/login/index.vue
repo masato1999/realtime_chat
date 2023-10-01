@@ -22,6 +22,7 @@ export default defineComponent({
     const { state, isLogin, login } = useSession();
     const { req } = useContext();
 
+    // ここって非同期にする必要ある？
     useAsync(async () => {
       isLogin(req);
     });

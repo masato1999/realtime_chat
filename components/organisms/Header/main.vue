@@ -14,9 +14,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useRouter } from "@nuxtjs/composition-api";
-import { signOut } from "firebase/auth";
-import { auth } from "@/plugins/firebase";
+import { defineComponent, reactive } from "@nuxtjs/composition-api";
+import { useSession } from "@/composable/useSession";
 import FormButton from "@/components/atoms/FormButton/main.vue";
 import FormInput from "@/components/atoms/FormInput/main.vue";
 
@@ -32,7 +31,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const router = useRouter();
+    const { logout } = useSession();
 
     const state = reactive({
       searchKeyword: "",
@@ -41,15 +40,6 @@ export default defineComponent({
     const onSearch = () => {
       console.log("Header: onSearch");
       state.searchKeyword = "";
-    };
-
-    const logout = async () => {
-      try {
-        await signOut(auth);
-        router.push("/login");
-      } catch (error) {
-        console.error("Logout failed:", error);
-      }
     };
 
     return {
