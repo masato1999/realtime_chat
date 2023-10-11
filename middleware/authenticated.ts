@@ -1,18 +1,24 @@
-import { Middleware } from '@nuxt/types';
-import { auth } from '@/plugins/firebase';
-import Cookies from 'js-cookie';
+import { Middleware } from "@nuxt/types";
+import { auth } from "@/plugins/firebase";
 
-const authenticated: Middleware = ({ redirect }) => {
-  const cookieValue = Cookies.get('access_token');
-  console.log("cookieValue", cookieValue);
+const authenticated: Middleware = ({ req, redirect }) => {
+  console.log("authenticated: authenticated");
 
-  // if (!cookieValue) {
-  //   console.log("cookieValue", cookieValue);
-  //   return redirect('/login');
-  // }
+  // MEMO: SSR時のみ実行する
+  if (process.server) {
+    console.log("process.server", process.server);
+    const cookieString = req.headers.cookie || "";
+    const matches = cookieString.match(/access_token=([^;]+)/);
+    const accessToken = matches ? decodeURIComponent(matches[1]) : null;
 
-  if (!auth.currentUser && !cookieValue) {
-    return redirect('/login');
+    if (accessToken === null) {
+      return redirect("/login");
+    }
+  }
+  else {
+    if (!auth.currentUser) {
+      return redirect("/login");
+    }
   }
 };
 
