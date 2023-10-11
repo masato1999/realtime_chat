@@ -2,15 +2,11 @@
   &__Header {
     width: 100%;
     height: 50px;
-    display: flex;
-    align-items: center;
   }
 
-  &__Icon {
-    &--Logo {
-      margin: 20px;
-      width: 100px;
-    }
+  &__Logo {
+    height: 50px;
+    margin-left: 10px;
   }
 
   &__UnderLine {
@@ -20,7 +16,7 @@
     border: rgb(195, 195, 195, 0.8) 1px solid;
   }
 
-  &__Body {
+  &__Container {
     width: 100%;
     height: calc(100vh - 50px);
     display: flex;
@@ -28,7 +24,56 @@
     align-items: center;
   }
 
-  &__FormInput {
-    width: 720px;
+  &__ContainerLayout {
+    width: 70%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 50px 30px;
+  }
+
+  &__Title {
+    font-size: 24px;
+  }
+
+  &__Signin {
+    margin: 32px 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    & > * {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  &__GoogleLoginButton {
+    position: relative;
+  }
+
+  &__GoogleLoginImg {
+    position: absolute;
+    height: 32px;
+    top: 4px;
+    left: 4px;
+  }
+
+  &__Signup {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    & > * {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
   }
 }

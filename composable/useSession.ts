@@ -34,7 +34,7 @@ export const useSession = () => {
     };
   };
 
-  const login = async () => {
+  const googleLogin = async () => {
     try {
       console.log("Google authentication login");
       await signInWithRedirect(auth, provider);
@@ -52,5 +52,5 @@ export const useSession = () => {
     }
   };
 
-  return { state, isLogin, login, logout };
+  return { state, isLogin, googleLogin, logout };
 }
