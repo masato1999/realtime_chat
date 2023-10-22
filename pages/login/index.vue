@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useAsync, useContext } from "@nuxtjs/composition-api";
+import { defineComponent, useRouter } from "@nuxtjs/composition-api";
 import { useSession } from "@/composable/useSession";
 import FormButton from "@/components/atoms/FormButton/main.vue";
 
@@ -19,13 +19,14 @@ export default defineComponent({
     FormButton,
   },
   setup() {
-    const { state, isLogin, login } = useSession();
-    const { req } = useContext();
+    const { state, signIn } = useSession();
+    const router = useRouter();
 
-    // ここって非同期にする必要ある？
-    useAsync(async () => {
-      isLogin(req);
-    });
+    const login = async () => {
+      await signIn();
+      console.log("signIn終わり");
+      router.push("/chat");
+    };
 
     return {
       state,
