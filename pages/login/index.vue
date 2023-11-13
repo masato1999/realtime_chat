@@ -23,8 +23,8 @@ export default defineComponent({
     const router = useRouter();
 
     const login = async () => {
+      console.log("pages: login");
       await signIn();
-      console.log("signIn終わり");
       router.push("/chat");
     };
 

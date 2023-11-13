@@ -2,7 +2,7 @@ import { reactive } from '@nuxtjs/composition-api';
 import { auth } from "@/plugins/firebase";
 import {
   GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithPopup,
   signOut as firebaseSignOut,
 } from "firebase/auth";
 
@@ -31,7 +31,7 @@ export const useSession = () => {
   const signIn = async () => {
     try {
       console.log("Google authentication signIn");
-      await signInWithRedirect(auth, provider);
+      await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Google authentication failed:", error);
     }
