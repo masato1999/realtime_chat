@@ -19,6 +19,7 @@
 import { defineComponent, inject, onMounted, nextTick } from "@nuxtjs/composition-api";
 import { chatKey } from "@/pages/chat/store";
 import { ensureDefined } from "@/utils/errors/ensureDefined";
+import { scroll } from "@/composable/scroll";
 import CardItem from "@/components/organisms/CardItem/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
@@ -28,16 +29,14 @@ export default defineComponent({
     UserInfoBox,
   },
   setup() {
+    const { scrollToEnd } = scroll();
     const { state } = ensureDefined(inject(chatKey));
 
     onMounted(async () => {
       console.log("CardList: onMounted");
 
       nextTick(() => {
-        const contentContainer = document.getElementById("scrollToBottom");
-        contentContainer?.scrollIntoView({
-          behavior: "smooth",
-        });
+        scrollToEnd();
       });
     });
 

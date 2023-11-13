@@ -2,16 +2,12 @@
   <div class="ChatField">
     <div class="ChatField__Header">
       <div class="ChatField__UserInfoBox">
-        <UserInfoBox :name="name" :isOnline="false" />
+        <UserInfoBox :name="name" />
       </div>
       <span class="ChatField__UnderLine" />
     </div>
     <CardList class="ChatField__CardList" />
-    <TextareaWithButton
-      class="ChatField__TextareaWithButton"
-      size="medium"
-      @updateValue="onSubmit($event)"
-    />
+    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="onSubmit($event)" />
     <FormButton class="ChatField__DeleteButton" @click="deleteChatList()">
       全てのデータを削除する
     </FormButton>
@@ -23,6 +19,7 @@ import { defineComponent, inject, onMounted, watch, nextTick } from "@nuxtjs/com
 import { isEmpty } from "lodash";
 import { chatKey } from "@/pages/chat/store";
 import { ensureDefined } from "@/utils/errors/ensureDefined";
+import { scroll } from "@/composable/scroll";
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
@@ -37,6 +34,7 @@ export default defineComponent({
   },
   setup() {
     const { state, fetchChatList, updateChatList, deleteChatList } = ensureDefined(inject(chatKey));
+    const { scrollToEnd } = scroll();
 
     onMounted(async () => {
       console.log("ChatField: onMounted");
@@ -56,10 +54,7 @@ export default defineComponent({
       console.log("ChatField: watch");
 
       nextTick(() => {
-        const contentContainer = document.getElementById("scrollToBottom");
-        contentContainer?.scrollIntoView({
-          behavior: "smooth",
-        });
+        scrollToEnd();
       });
     });
 

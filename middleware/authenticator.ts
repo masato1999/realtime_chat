@@ -14,9 +14,6 @@ const authenticator: Middleware = ({ req, redirect }) => {
     const accessToken = matches ? decodeURIComponent(matches[1]) : null;
     const userInfo = getUserFromCookie(req);
 
-    console.log('userInfo', userInfo)
-    console.log('!!accessToken', !!accessToken)
-
     updateUserInfo(userInfo);
     updateIsLoggedIn(!!accessToken);
 
