@@ -1,6 +1,6 @@
 <template>
   <div class="TextareaWithButton">
-    <textarea class="TextareaWithButton__InputArea" v-model="state.value" />
+    <textarea class="TextareaWithButton__InputArea" v-model.trim="state.value" />
     <div class="TextareaWithButton__ButtonArea">
       <FormButton @click="updateValue">
         {{ buttonName }}
@@ -11,8 +11,11 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext, reactive } from "@nuxtjs/composition-api";
-import { State } from "./types";
 import FormButton from "@/components/atoms/FormButton/main.vue";
+
+type State = {
+  value: string;
+};
 
 export default defineComponent({
   components: {

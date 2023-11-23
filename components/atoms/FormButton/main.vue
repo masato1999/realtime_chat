@@ -14,7 +14,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType, SetupContext } from "@nuxtjs/composition-api";
-import { Size } from "./types";
+
+type Size = "small" | "medium" | "large";
 
 export default defineComponent({
   props: {

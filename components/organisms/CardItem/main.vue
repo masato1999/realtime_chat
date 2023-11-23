@@ -1,11 +1,7 @@
 <template>
   <div class="CardItem">
     <div class="CardItem__UserInfoBox">
-      <UserInfoBox
-        :name="userInfo.name"
-        :isOnline="userInfo.isOnline"
-        :dateTime="userInfo.dateTime"
-      />
+      <slot />
     </div>
     <p class="CardItem__Text">
       {{ message }}
@@ -15,7 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, inject } from "@nuxtjs/composition-api";
-import { userInfoKey } from "@/pages/store";
+import { chatKey } from "@/pages/chat/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 
 export default defineComponent({
@@ -29,10 +26,10 @@ export default defineComponent({
     },
   },
   setup() {
-    const userInfo = inject(userInfoKey);
+    const { state } = ensureDefined(inject(chatKey));
 
     return {
-      userInfo,
+      state,
     };
   },
 });

@@ -2,45 +2,67 @@
   <div class="ChatField">
     <div class="ChatField__Header">
       <div class="ChatField__UserInfoBox">
-        <UserInfoBox :name="userInfo.name" :isOnline="userInfo.isOnline" />
+        <UserInfoBox :name="name" />
       </div>
       <span class="ChatField__UnderLine" />
     </div>
     <CardList class="ChatField__CardList" />
-    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="post($event)" />
+    <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="onSubmit($event)" />
+    <FormButton class="ChatField__DeleteButton" @click="deleteChatList()">
+      全てのデータを削除する
+    </FormButton>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, reactive } from "@nuxtjs/composition-api";
-import { userInfoKey } from "@/pages/store";
-import { State } from "./types";
+import { defineComponent, inject, onMounted, watch, nextTick } from "@nuxtjs/composition-api";
+import { isEmpty } from "lodash";
+import { chatKey } from "@/pages/chat/store";
+import { ensureDefined } from "@/utils/errors/ensureDefined";
+import { scroll } from "@/composable/scroll";
 import CardList from "@/components/organisms/CardList/main.vue";
 import UserInfoBox from "@/components/molecules/UserInfoBox/main.vue";
 import TextareaWithButton from "@/components/molecules/TextareaWithButton/main.vue";
+import FormButton from "@/components/atoms/FormButton/main.vue";
 
 export default defineComponent({
   components: {
     CardList,
     UserInfoBox,
     TextareaWithButton,
+    FormButton,
   },
   setup() {
-    const userInfo = inject(userInfoKey);
+    const { state, fetchChatList, updateChatList, deleteChatList } = ensureDefined(inject(chatKey));
+    const { scrollToEnd } = scroll();
 
-    const state = reactive<State>({
-      message: "",
+    onMounted(async () => {
+      console.log("ChatField: onMounted");
+      fetchChatList();
     });
 
-    const post = ($event: string) => {
-      console.log("ChatField: post");
-      state.message = $event;
+    const name = "テスト";
+
+    const onSubmit = async ($event: string) => {
+      console.log("ChatField: onSubmit");
+      if (isEmpty($event)) return;
+
+      updateChatList("masato1999", $event);
     };
 
+    watch(state, () => {
+      console.log("ChatField: watch");
+
+      nextTick(() => {
+        scrollToEnd();
+      });
+    });
+
     return {
-      userInfo,
+      name,
       state,
-      post,
+      onSubmit,
+      deleteChatList,
     };
   },
 });

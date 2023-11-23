@@ -7,6 +7,14 @@
   padding: 0;
   cursor: pointer;
 
+  &--Large {
+    width: 720px;
+  }
+
+  &--Medium {
+    width: 160px;
+  }
+
   &--Small {
     width: 64px;
   }
