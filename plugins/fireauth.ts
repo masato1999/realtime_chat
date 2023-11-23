@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 export default (): Promise<void> => {
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged(user => {
-      console.log("auth's state changed!", user);
       if (user && auth.currentUser !== null) {
         auth.currentUser.getIdToken(true)
           .then((token: string) => {

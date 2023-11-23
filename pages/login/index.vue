@@ -12,7 +12,7 @@
             class="Login__GoogleLoginButton"
             :size="'large'"
             :color="'white'"
-            @click="googleLogin"
+            @click="GoogleLogin"
           >
             Googleでログイン
             <img src="@/assets/img/Google.png" class="Login__GoogleLoginImg" />
@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useAsync, useContext, reactive } from "@nuxtjs/composition-api";
+import { defineComponent, useContext, reactive, useRouter } from "@nuxtjs/composition-api";
 import { useSession } from "@/composable/useSession";
 import FormButton from "@/components/atoms/FormButton/main.vue";
 import FormInput from "@/components/atoms/FormInput/main.vue";
@@ -66,17 +66,18 @@ export default defineComponent({
     FormInput,
   },
   setup() {
-    const { isLogin, googleLogin } = useSession();
-    const { req } = useContext();
-    const state = reactive({
+    const { state, signIn } = useSession();
+    const router = useRouter();
+    const mailLoginInfo = reactive({
       mail: "",
       password: "",
     });
 
-    // ここって非同期にする必要ある？
-    useAsync(async () => {
-      isLogin(req);
-    });
+    const GoogleLogin = async () => {
+      console.log("pages: GoogleLogin");
+      await signIn();
+      router.push("/chat");
+    };
 
     const MailLogin = () => {
       console.log("Login: MailLogin");
@@ -88,7 +89,8 @@ export default defineComponent({
 
     return {
       state,
-      googleLogin,
+      mailLoginInfo,
+      GoogleLogin,
       MailLogin,
       RegisterMember,
     };

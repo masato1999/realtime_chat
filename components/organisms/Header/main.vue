@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "@nuxtjs/composition-api";
+import { defineComponent, reactive, useRouter } from "@nuxtjs/composition-api";
 import { useSession } from "@/composable/useSession";
 import FormButton from "@/components/atoms/FormButton/main.vue";
 import FormInput from "@/components/atoms/FormInput/main.vue";
@@ -31,7 +31,16 @@ export default defineComponent({
     },
   },
   setup() {
-    const { logout } = useSession();
+    const { signOut, updateUserInfo, updateIsLoggedIn } = useSession();
+    const router = useRouter();
+
+    const logout = async () => {
+      await signOut();
+      router.push("/login");
+
+      updateUserInfo(null);
+      updateIsLoggedIn(false);
+    };
 
     const state = reactive({
       searchKeyword: "",

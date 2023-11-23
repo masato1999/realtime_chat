@@ -20,6 +20,9 @@ export default {
   plugins: [
     '@/plugins/fireauth.ts',
   ],
+  router: {
+    middleware: ['authenticator'],
+  },
   components: true,
   buildModules: [
     '@nuxt/typescript-build',

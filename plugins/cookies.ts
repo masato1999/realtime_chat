@@ -1,8 +1,9 @@
 import jwtDecode from 'jwt-decode';
+import { Context } from '@nuxt/types';
 
 const cookieparser = require('cookieparser');
 
-export const getUserFromCookie = (req: any): any | null => {
+export const getUserFromCookie = (req: Context['req']): any | null => {
   if (process.server && process.static) return null;
   if (!req.headers.cookie) return null;
   const parsed = cookieparser.parse(req.headers.cookie);
