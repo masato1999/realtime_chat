@@ -13,8 +13,8 @@
         <p class="UserInfoBox__StatusMessage">{{ userStatus }}</p>
       </div>
     </div>
-    <div v-if="props.dateTime !== ''" class="UserInfoBox__Time">
-      {{ props.dateTime }}
+    <div v-if="dateTime !== ''" class="UserInfoBox__Time">
+      {{ dateTime }}
     </div>
   </div>
 </template>
@@ -42,7 +42,6 @@ export default defineComponent({
 
     return {
       userStatus,
-      props,
     };
   },
 });

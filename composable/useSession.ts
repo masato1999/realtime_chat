@@ -24,7 +24,7 @@ export const useSession = () => {
   }
 
   const updateIsLoggedIn = (isLoggedIn: boolean) => {
-    console.log("useSession: updateUserInfo");
+    console.log("useSession: updateIsLoggedIn");
     state.isLoggedIn = isLoggedIn;
   }
 
@@ -39,6 +39,7 @@ export const useSession = () => {
 
   const signOut = async () => {
     try {
+      console.log("サイインアウト");
       await firebaseSignOut(auth);
     } catch (error) {
       console.error("signOut failed:", error);

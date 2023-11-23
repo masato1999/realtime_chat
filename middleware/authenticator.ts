@@ -4,7 +4,7 @@ import { useSession } from "@/composable/useSession";
 import { getUserFromCookie } from '@/plugins/cookies';
 
 const authenticator: Middleware = ({ req, redirect }) => {
-  console.log("authenticator")
+  console.log("authenticator");
   const { updateUserInfo, updateIsLoggedIn } = useSession();
 
   // MEMO: SSR時のみ実行する
@@ -20,8 +20,6 @@ const authenticator: Middleware = ({ req, redirect }) => {
     if (!accessToken) {
       return redirect("/login");
     }
-  } else if (!auth.currentUser) {
-    return redirect("/login");
   }
 };
 
