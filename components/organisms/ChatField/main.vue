@@ -8,6 +8,13 @@
     </div>
     <CardList class="ChatField__CardList" />
     <TextareaWithButton class="ChatField__TextareaWithButton" @updateValue="onSubmit($event)" />
+    <FormButton
+      v-if="state.messageList.length === 0"
+      class="ChatField__CreateButton"
+      @click="createDatabase()"
+    >
+      DBを構築する
+    </FormButton>
     <FormButton class="ChatField__DeleteButton" @click="deleteChatList()">
       全てのデータを削除する
     </FormButton>
@@ -33,7 +40,9 @@ export default defineComponent({
     FormButton,
   },
   setup() {
-    const { state, fetchChatList, updateChatList, deleteChatList } = ensureDefined(inject(chatKey));
+    const { state, createDatabase, fetchChatList, updateChatList, deleteChatList } = ensureDefined(
+      inject(chatKey),
+    );
     const { scrollToEnd } = scroll();
 
     onMounted(async () => {
@@ -62,6 +71,7 @@ export default defineComponent({
       name,
       state,
       onSubmit,
+      createDatabase,
       deleteChatList,
     };
   },

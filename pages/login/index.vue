@@ -17,27 +17,6 @@
             Googleでログイン
             <img src="@/assets/img/Google.png" class="Login__GoogleLoginImg" />
           </FormButton>
-          <p>または</p>
-          <FormInput
-            class="Login__FormInput"
-            :value="state.mail"
-            :size="'large'"
-            :color="'white'"
-            :placeholder="'メール'"
-            @input="state.mail = $event"
-          />
-          <FormInput
-            class="Login__FormInput"
-            :value="state.password"
-            :size="'large'"
-            :color="'white'"
-            :placeholder="'パスワード'"
-            @input="state.password = $event"
-          />
-          <FormButton class="Login__MailLogin" :size="'large'" @click="MailLogin"
-            >ログイン</FormButton
-          >
-          <span class="Login__UnderLine" />
         </div>
         <div class="Login__Signup">
           <p>アカウントをお持ちでない方</p>
@@ -55,15 +34,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, reactive, useRouter } from "@nuxtjs/composition-api";
+import { defineComponent, reactive, useRouter } from "@nuxtjs/composition-api";
 import { useSession } from "@/composable/useSession";
 import FormButton from "@/components/atoms/FormButton/main.vue";
-import FormInput from "@/components/atoms/FormInput/main.vue";
 
 export default defineComponent({
   components: {
     FormButton,
-    FormInput,
   },
   setup() {
     const { state, signIn } = useSession();
@@ -79,10 +56,6 @@ export default defineComponent({
       router.push("/chat");
     };
 
-    const MailLogin = () => {
-      console.log("Login: MailLogin");
-    };
-
     const RegisterMember = () => {
       console.log("Login: RegisterMember");
     };
@@ -91,7 +64,6 @@ export default defineComponent({
       state,
       mailLoginInfo,
       GoogleLogin,
-      MailLogin,
       RegisterMember,
     };
   },
