@@ -7,12 +7,12 @@ import moment from "moment";
 export const chat = (() => {
   const state = reactive<Store>({
     messageList: [{
-      id: 1,
+      id: "",
       dateTime: "",
       message: "",
       userId: "",
       user: {
-        id: 1,
+        id: "",
         imagePath: "",
         isLoggedIn: false,
         loginId: "",
@@ -25,13 +25,13 @@ export const chat = (() => {
 
   const fetchChatList = () => {
     console.log("store: fetchChatList");
-    onValue(ref(db, 'message_list'), (snapshot) => {
+    onValue(ref(db, 'messageList'), (snapshot) => {
       const messages = snapshot.val();
       const updatedMessages: any = [];
 
       for (let key in messages) {
         const message = messages[key];
-        onValue(ref(db, 'users/' + message.userId), (userSnapshot) => {
+        onValue(ref(db, 'user/' + message.userId), (userSnapshot) => {
           const user = userSnapshot.val();
           // ユーザー情報をメッセージに追加
           message.user = user;
@@ -46,7 +46,7 @@ export const chat = (() => {
   const updateChatList = (userId: string, message: string) => {
     console.log("store: updateChatList");
     // メッセージリストのリファレンスを取得
-    const messageListRef = ref(db, 'message_list');
+    const messageListRef = ref(db, 'messageList');
     // 新しいメッセージのリファレンスを作成
     const newMessageRef = push(messageListRef);
 
@@ -69,7 +69,7 @@ export const chat = (() => {
   // TODO: データ削除のテストとして配置しているため、不要になったら削除する
   const deleteChatList = async () => {
     console.log("store: deleteChatList");
-    const messageListRef = ref(db, 'message_list');
+    const messageListRef = ref(db, 'messageList');
 
     set(messageListRef, null)
       .then(() => {

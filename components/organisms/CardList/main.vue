@@ -4,7 +4,7 @@
       v-for="(messageItem, key) in state.messageList"
       :key="key"
       :message="messageItem.message"
-      :id="key === state.messageList.length - 1 ? 'scrollToBottom' : ''"
+      :id="key === state.messageList.length - 1 ? 'scrollToBottom' : null"
     >
       <UserInfoBox
         :name="messageItem.user.userName"

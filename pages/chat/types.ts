@@ -1,5 +1,5 @@
 type UserInfo = {
-  id: number;
+  id: string;
   imagePath: string;
   isLoggedIn: boolean;
   loginId: string;
@@ -7,7 +7,7 @@ type UserInfo = {
 }
 
 type MessageListItem = {
-  id: number;
+  id: string;
   dateTime: string;
   message: string;
   userId: string;

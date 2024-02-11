@@ -1,5 +1,4 @@
 import { Middleware } from "@nuxt/types";
-import { auth } from "@/plugins/firebase";
 import { useSession } from "@/composable/useSession";
 import { getUserFromCookie } from '@/plugins/cookies';
 

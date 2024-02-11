@@ -30,7 +30,7 @@ export const useSession = () => {
 
   const signIn = async () => {
     try {
-      console.log("Google authentication signIn");
+      console.log("useSession: signIn");
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Google authentication failed:", error);
@@ -39,7 +39,7 @@ export const useSession = () => {
 
   const signOut = async () => {
     try {
-      console.log("サイインアウト");
+      console.log("useSession: signOut");
       await firebaseSignOut(auth);
     } catch (error) {
       console.error("signOut failed:", error);

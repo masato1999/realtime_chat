@@ -1,21 +1,32 @@
 .FormButton {
-  height: 32px;
-  background-color: #164557;
-  color: #ffffff;
   border-radius: 5px;
-  border: 1px solid #c3c3c3;
   padding: 0;
   cursor: pointer;
 
   &--Large {
-    width: 720px;
+    width: 640px;
+    height: 40px;
   }
 
   &--Medium {
     width: 160px;
+    height: 32px;
   }
 
   &--Small {
     width: 64px;
+    height: 32px;
+  }
+
+  &--DarkBlue {
+    border: 1px solid #c3c3c3;
+    background-color: #164557;
+    color: #ffffff;
+  }
+
+  &--White {
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    color: #164557;
   }
 }

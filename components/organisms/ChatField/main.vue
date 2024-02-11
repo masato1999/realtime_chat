@@ -47,7 +47,7 @@ export default defineComponent({
       console.log("ChatField: onSubmit");
       if (isEmpty($event)) return;
 
-      updateChatList("masato1999", $event);
+      updateChatList(state.messageList[0].user.id, $event);
     };
 
     watch(state, () => {
